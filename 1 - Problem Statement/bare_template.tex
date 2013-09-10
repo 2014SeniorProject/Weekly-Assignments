@@ -9,14 +9,14 @@
 %| This source will generate a PDF file complete with thumbnails navigation menu and metadata,
 %| 
 
-\documentclass[12pt,article]{IEEEtran}
+\documentclass[12pt,journal]{IEEEtran}
 
 %| This section will essentially create variables to be used in some
 %| of the documents formatting and the PDF's metadata 
 %|
 %| 
 \newcommand{\TITLE}{Problem Statement}
-\newcommand{\KEYWORDS}{}
+\newcommand{\KEYWORDS}{Health, Wellness, Bicycle, Obesity, }
 \newcommand{\ABSTRACT}{The average person is becoming less active, not just in first world countries, 
 					but across geopolitical and socioeconomic boundaries. This sedentary lifestyle has 
 					dire consequences to health and wellness. Moderate exercise can lead to improved 
@@ -46,7 +46,7 @@
 	pdftex,
 	pdftitle={\TITLE},															%#CHANGE
 	pdfsubject={\ABSTRACT},														%#CHANGE
-	pdfauthor={Micheal Frith, David Larribas, Devin Moore, Benjamin Smith},		%#CHANGE
+	pdfauthor={\AUTHOR},														%#CHANGE
 	pdfkeywords={\KEYWORDS}}													%#CHANGE
 
 %| Calls hyper ref package 
@@ -66,6 +66,10 @@
 \usepackage{url}
 
 \usepackage{graphicx}
+
+\usepackage{float}
+
+\usepackage{placeins}
 
 % Alter some LaTeX defaults for better treatment of figures:
     % See p.105 of "TeX Unbound" for suggested values.
@@ -107,79 +111,132 @@
 		to the world becoming less healthy.
 		
 	\section{The Scope of the Problem}
-		\IEEEPARstart{I}{nactivity} carries with it major detrimental effects to human health including physical and mental afflictions.  The physical and mental handicaps include stress, depression, obesity and heart disease.  These afflictions carry with them a reduced life span, inflated health insurance costs and a lower quality of life.
-		Obesity is an elevated topic of discussion because of the great number of detrimental effects it has on the human body.  Each year there are 2.8 million deaths worldwide caused by being overweight or obese.  35\% of all adults twenty years of age or older were overweight, with many them being obese, according to a survey in 2008. \cite{14}  Obesity and inactivity can cause cardiovascular disease, high cholesterol, diabetes, different types of cancers and psychological ailments.  Nearly half of all adults worldwide are affected by cardiovascular disease which contributes to stroke and kidney failure.  There were an estimated 17.3 million deaths caused by cardiovascular disease accounting for 30\% of all deaths worldwide making it the number one cause of death. \cite{4}  Hypertension alone, a form of cardiovascular disease, is responsible for 9.4 million deaths per year worldwide. \cite{3}  Diabetes doubles the risk of death compared to peers of the same age.  Diabetes will damage the heart, kidney, nerves and even blood vessels. \cite{15}
-		Inactivity can cause all the previous ailments, but physical activity can alleviate or even cure these effects. Physical activity increases energy levels with as little as 30 minutes of exercise a day. \cite{16} This can promote many benefits at home and in the workplace such as increased energy and facilitate daily tasks.  Adequate physical activity can provide energy throughout the day which can increase focus on any task, physical or not. \cite{17}  Regular physical activity will increase cardiorespiratory and muscular fitness. \cite{3} Individuals can increase healthiness by engaging in regular physical activity 150 minutes a week for adults, which is less than 30 minutes per day. \cite{18}
-		In addition to the physical conditions caused by physical inactivity, it also causes many negative mental effects.  These include depression, anxiety and low self-esteem.  Depression can cause a decrease in work performance which results in a significant decrease in employee profitability. \cite{11}  More than 350 million people worldwide have depression making it one of the leading causes of disabilities in the world.  \cite{12} Anxiety can be beneficial in small doses, but a large amount of anxiety can turn into a hindering disorder. These disorders include generalized anxiety disorder, obsessive-compulsive disorder, panic disorder and post traumatic stress disorder. \cite{13}  
-		With the increase in weight control that comes with physical activity, a better self-image may also be produced.  Increased physical activity can cause a person to look and feel more in shape.  Physical activity can lead to an increase in performance and has been shown to lead to improved self-esteem.  Physical activity can also relieve anxiety. \cite{13} Depression will also improve with moderate levels of physical activity. \cite{16}
-		As one ages, moderate aerobic and strength training activities 3-5 times a week for 30-60 minutes can improve aspects of mental health, such as improved thinking, learning and judgment abilities. These activities can also help with movement, keeping joints, bones, and muscles healthy as well as slowing bone density loss. \cite{18}
+		\IEEEPARstart{I}{nactivity} carries with it major detrimental effects to human health including physical and 
+		mental afflictions.  The physical and mental handicaps include stress, depression, obesity and heart disease.  
+		These afflictions carry with them a reduced life span, inflated health insurance costs and a lower quality of life.
 		
-	\begin{figure*}[htpb]
-    	\caption{Percentage overweight (BMI 25+) ages 20+}
-    	\centering
-		\vspace{10}
-    	\includegraphics[width=\textwidth]{overweightbyincome}
-		\cite{23}
-	\end{figure*}
-
-	Inactivity and its health effects were once the exclusive blight of the developed world. This problem has 
-	changed its face over the past few decades to impact an increasing percentage of the world’s populace. The 
-	World Health Organization has found that low and middle income countries have overweight and obesity rates 
-	that are on the rise, especially in urban settings due to the evolving nature of work, transportation, and 
-	urbanization. [18] 
-	
-	\begin{figure*}[H]
-    	\caption{Prevalence of obesity, ages 20+, age standardized, both sexes, 2008}
-    	\centering
-		\vspace{10}
-    	\includegraphics[width=.8\textwidth]{prevalenceofobesity}
-		\cite{22}
-	\end{figure*}
-	
-	Since the the advent motorized transportation, it’s becoming much easier to travel where you need to, without 
-	having to walk further than the length of your driveway. Stanford school of medicine noted that our bodies have 
-	significantly reduced demand for physical activity due to changing modes of transportation, workplace environments, 
-	and entertainment.[19] 
-	Nielsen has found the average American spent more than 33 hours watching television a week in 2012, indicating just 
-	how sedentary leisure is today. [20] Citizens of the UK may spend upwards of 28 hours a week watching T.V. From 1970 
-	to 2006, there has been a long-term decline in annual hours worked, leading to more available leisure.
-
-	\begin{figure}[htpb]
-    	\caption{1970-2006: long-term decline in annual hours worked}
-    	\centering
-		\vspace{10}
-    	\includegraphics[width=.5\textwidth]{hoursworked}
-		\cite{22}
-	\end{figure}
-	
+		Obesity is an elevated topic of discussion because of the great number of detrimental effects it has on the human body.  
+		Each year there are 2.8 million deaths worldwide caused by being overweight or obese.  35\% of all adults twenty years 
+		of age or older were overweight, with many them being obese, according to a survey in 2008. \cite{14}  Obesity and 
+		inactivity can cause cardiovascular disease, high cholesterol, diabetes, different types of cancers and psychological 
+		ailments.  Nearly half of all adults worldwide are affected by cardiovascular disease which contributes to stroke and 
+		kidney failure.  There were an estimated 17.3 million deaths caused by cardiovascular disease accounting for 30\% of 
+		all deaths worldwide making it the number one cause of death. \cite{4}  Hypertension alone, a form of cardiovascular 
+		disease, is responsible for 9.4 million deaths per year worldwide. \cite{3}  Diabetes doubles the risk of death 
+		compared to peers of the same age.  Diabetes will damage the heart, kidney, nerves and even blood vessels. \cite{15}
+		
+		Inactivity can cause all the previous ailments, but physical activity can alleviate or even cure these effects. 
+		Physical activity increases energy levels with as little as 30 minutes of exercise a day. \cite{16} This can promote 
+		many benefits at home and in the workplace such as increased energy and facilitate daily tasks.  Adequate physical 
+		activity can provide energy throughout the day which can increase focus on any task, physical or not. \cite{17}  
+		Regular physical activity will increase cardiorespiratory and muscular fitness. \cite{3} Individuals can increase 
+		healthiness by engaging in regular physical activity 150 minutes a week for adults, which is less than 30 minutes 
+		per day. \cite{18}
+		
+		In addition to the physical conditions caused by physical inactivity, it also causes many negative mental effects.
+		These include depression, anxiety and low self-esteem.  Depression can cause a decrease in work performance which 
+		results in a significant decrease in employee profitability. \cite{11}  More than 350 million people worldwide have 
+		depression making it one of the leading causes of disabilities in the world.  \cite{12} Anxiety can be beneficial in 
+		small doses, but a large amount of anxiety can turn into a hindering disorder. These disorders include generalized 
+		anxiety disorder, obsessive-compulsive disorder, panic disorder and post traumatic stress disorder. \cite{13}  
+		
+		With the increase in weight control that comes with physical activity, a better self-image may also be produced.  
+		Increased physical activity can cause a person to look and feel more in shape.  Physical activity can lead to an increase 
+		in performance and has been shown to lead to improved self-esteem.  Physical activity can also relieve anxiety. 
+		\cite{13} Depression will also improve with moderate levels of physical activity. \cite{16}
+		
+		As one ages, moderate aerobic and strength training activities 3-5 times a week for 30-60 minutes can improve aspects 
+		of mental health, such as improved thinking, learning and judgment abilities. These activities can also help with 
+		movement, keeping joints, bones, and muscles healthy as well as slowing bone density loss. \cite{18}
+		
+		\begin{figure*}[htpb]
+	    	\caption{Percentage overweight (BMI 25+) ages 20+}
+	    	\centering
+			\vspace{10}
+	    	\includegraphics[width=\textwidth]{overweightbyincome}
+			\cite{23}
+		\end{figure*}
+		\FloatBarrier
+		
+		Inactivity and its health effects were once the exclusive blight of the developed world. This problem has changed its face 
+		over the past few decades to impact an increasing percentage of the world’s populace. Seen in figures 1 and 2, the World 
+		Health Organization has found that low and middle income countries have overweight and obesity rates that are on the rise, 
+		especially in urban settings due to the evolving nature of work, transportation, and urbanization. [18] 		
+		\begin{figure*}[htp]
+	    	\caption{Prevalence of obesity, ages 20+, age standardized, both sexes, 2008}
+	    	\centering
+			\vspace{10}
+	    	\includegraphics[width=\textwidth]{prevalenceofobesity}
+			\cite{22}
+		\end{figure*}
+				
+		Since the the advent motorized transportation, it’s becoming much easier to travel where you need to, without 
+		having to walk further than the length of your driveway. Stanford school of medicine noted that our bodies have 
+		significantly reduced demand for physical activity due to changing modes of transportation, workplace environments, 
+		and entertainment.\cite{19} 
+		Nielsen has found the average American spent more than 33 hours watching television a week in 2012, indicating just 
+		how sedentary leisure is today. \cite{20} Citizens of the UK may spend upwards of 28 hours a week watching T.V. As seen in
+		figure 3 From 1970 to 2006, there has been a long-term decline in annual hours worked, leading to more available leisure.
+		
+		\begin{figure}[htpb]
+	    	\caption{1970-2006: Long-term decline in annual hours worked}
+	    	\centering
+			\vspace{10}
+	    	\includegraphics[width=.5\textwidth]{hoursworked}}
+			\cite{23}
+		\end{figure}
+		
 	\section{Health Effects of Inactivity}
-	\IEEEPARstart{I}{nactivity} carries with it major detrimental effects to human health including physical and mental afflictions. 
-	The physical and mental handicaps include stress, depression, obesity and heart disease. These afflictions carry with them a reduced 
-	life span and a lower quality of life.
-	Obesity is an elevated topic of discussion because of the great number of detrimental effects it has on the human body. Each year there 
-	are 2.8 million deaths worldwide caused by being overweight or obese. 35\% of all adults twenty years of age or older were overweight, 
-	with many them being obese, according to a survey in 2008. \cite{14} Obesity and inactivity can cause cardiovascular disease, high cholesterol, 
-	diabetes, different types of cancers and psychological ailments. Nearly half of all adults worldwide are affected by cardiovascular disease
-	which contributes to stroke and kidney failure. There were an estimated 17.3 million deaths caused by cardiovascular disease accounting for 
-	30\% of all deaths worldwide making it the number one cause of death. \cite{4}  Hypertension alone, a form of cardiovascular disease, is responsible 
-	for 9.4 million deaths per year worldwide. \cite{3} Diabetes doubles the risk of death compared to peers of the same age. Diabetes will damage the 
-	heart, kidney, nerves and even blood vessels. \cite{15}
-	Inactivity can cause all the previous ailments, but physical activity can alleviate or even cure these effects. Physical activity increases energy 
-	levels with as little as 30 minutes of exercise a day. \cite{16} This can promote many benefits at home and in the workplace such as increased 
-	energy and facilitate daily tasks. Adequate physical activity can provide energy throughout the day which can increase focus on any task, physical 
-	or not. \cite{17} Regular physical activity will increase cardiorespiratory and muscular fitness. \cite{3} Individuals can increase healthiness by 
-	engaging in regular physical activity 150 minutes a week for adults, which is less than 30 minutes per day. \cite{18}
-	In addition to the physical conditions caused by physical inactivity, it also causes many negative mental effects. These include depression, anxiety 
-	and low self-esteem. Depression can cause a decrease in work performance which results in a significant decrease in employee profitability. \cite{11} 
-	More than 350 million people worldwide have depression making it one of the leading causes of disabilities in the world. \cite{12} Anxiety can be beneficial 
-	in small doses, but a large amount of anxiety can turn into a hindering disorder. These disorders include generalized anxiety disorder, obsessive-compulsive 
-	disorder, panic disorder and post traumatic stress disorder. \cite{13}  
-	With the increase in weight control that comes with physical activity, a better self-image may also be produced. Increased physical activity can cause a person 
-	to look and feel more in shape. Physical activity can lead to an increase in performance and has been shown to lead to improved self-esteem. Physical activity 
-	can also relieve anxiety. \cite{13} Depression will also improve with moderate levels of physical activity. \cite{17}
-	As one ages, moderate aerobic and strength training activities 3-5 times a week for 30-60 minutes can improve aspects of mental health, such as improved thinking, 
-	learning and judgment abilities. These activities can also help with movement, keeping joints, bones, and muscles healthy as well as slowing bone density loss. \cite{18}
+		\IEEEPARstart{I}{nactivity} carries with it major detrimental effects to human health including physical and mental afflictions. 
+		The physical and mental handicaps include stress, depression, obesity and heart disease. These afflictions carry with them a reduced 
+		life span and a lower quality of life.
+		Obesity is an elevated topic of discussion because of the great number of detrimental effects it has on the human body. Each year there 
+		are 2.8 million deaths worldwide caused by being overweight or obese. 35\% of all adults twenty years of age or older were overweight, 
+		with many them being obese, according to a survey in 2008. \cite{14} Obesity and inactivity can cause cardiovascular disease, high cholesterol, 
+		diabetes, different types of cancers and psychological ailments. Nearly half of all adults worldwide are affected by cardiovascular disease
+		which contributes to stroke and kidney failure. There were an estimated 17.3 million deaths caused by cardiovascular disease accounting for 
+		30\% of all deaths worldwide making it the number one cause of death. \cite{4}  Hypertension alone, a form of cardiovascular disease, is responsible 
+		for 9.4 million deaths per year worldwide. \cite{3} Diabetes doubles the risk of death compared to peers of the same age. Diabetes will damage the 
+		heart, kidney, nerves and even blood vessels. \cite{15}
+		
+		Inactivity can cause all the previous ailments, but physical activity can alleviate or even cure these effects. Physical activity increases energy 
+		levels with as little as 30 minutes of exercise a day. \cite{16} This can promote many benefits at home and in the workplace such as increased 
+		energy and facilitate daily tasks. Adequate physical activity can provide energy throughout the day which can increase focus on any task, physical 
+		or not. \cite{17} Regular physical activity will increase cardiorespiratory and muscular fitness. \cite{3} Individuals can increase healthiness by 
+		engaging in regular physical activity 150 minutes a week for adults, which is less than 30 minutes per day. \cite{18}
+		In addition to the physical conditions caused by physical inactivity, it also causes many negative mental effects. These include depression, anxiety 
+		and low self-esteem. Depression can cause a decrease in work performance which results in a significant decrease in employee profitability. \cite{11} 
+		More than 350 million people worldwide have depression making it one of the leading causes of disabilities in the world. \cite{12} Anxiety can be beneficial 
+		in small doses, but a large amount of anxiety can turn into a hindering disorder. These disorders include generalized anxiety disorder, obsessive-compulsive 
+		disorder, panic disorder and post traumatic stress disorder. \cite{13}  
+		
+		With the increase in weight control that comes with physical activity, a better self-image may also be produced. Increased physical activity can cause a person 
+		to look and feel more in shape. Physical activity can lead to an increase in performance and has been shown to lead to improved self-esteem. Physical activity 
+		can also relieve anxiety. \cite{13} Depression will also improve with moderate levels of physical activity. \cite{17}
+		As one ages, moderate aerobic and strength training activities 3-5 times a week for 30-60 minutes can improve aspects of mental health, such as improved thinking, 
+		learning and judgment abilities. These activities can also help with movement, keeping joints, bones, and muscles healthy as well as slowing bone density loss. \cite{18}
 
+	\section{Existing solutions and what ours has to offer}
+		\IEEEPARstart{T}{here} are many ways in which one can achieve physical fitness. These include running, bicycling, swimming, and working out at the gym.  Most of these activities 
+		require time to be set aside for them. Many people have trouble sacrificing time when their schedules are so pressed. Some forms of exercise can be harmful to 
+		at risk groups; running or strenuous weight lifting are common examples due to their high impact nature. Cycling and swimming are known low impact exercises 
+		that do not have these drawbacks. Cycling, however, can be used in many cases to integrate exercise into the daily commute. Although half of all car trips 
+		made are under 3 miles, only 1.6\% of Canadians and 0.6\% of Americans commutes to work via bicycle.\cite{22} Replacing short car trips a few times a per 
+		week with a bicycle could greatly increase a person’s activity level without having to set aside a large amount of time for exercise. 
+		However, biking is by no means a panacea. Getting started can be a daunting task for the inexperienced as well as those with physical limitations. Large 
+		hills can also prove discouraging, if not incapacitating. Safety is a concern for any rider, whether on the street or on a trail. A solution which can 
+		address these concerns could take on a role as a viable option to commute, or a new form of leisure, while providing an excellent form physical activity. 
+		Our solution is an electrical-assisted bicycle that can provide safety and an expandable feature set to users.
+		
+	\section{Conclusion}
+		\IEEEPARstart{T}{he} increasingly sedentary behavior of humans worldwide is a detrimental trend. People are becoming more reliant on television and computer entertainment 
+		as a leisure standard and driving as their primary mode of transportation. This increases the tendency toward an inactive lifestyle; unfortunately, this 
+		lack of activity is degrading people’s health. Detrimental health effects include an increased risk to cardiovascular disease, diabetes, as well as depression 
+		and anxiety disorders. There are many ways people can become active, however many of these are non-viable or inconvenient due to busy lifestyles or physical 
+		limitations. An activity that can easily be worked into daily life, while remaining accessible, would provide a practical solution to inactivity. Bicycling 
+		can be used for low impact exercise, travel, and leisure, and has the ability to be conveniently integrated into daily life.  If bicycling became more accessible, 
+		an increase in its use could benefit the health and wellness of society.
+	
 \bibliographystyle{IEEEtran}
 
 \bibliography{IEEEfull}
