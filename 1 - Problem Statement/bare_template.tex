@@ -1,0 +1,92 @@
+%| report template for CSUS Senior Design
+%|
+%| language: LaTeX
+%| Author: Ben Smith
+%| 
+%| This source has been tagged with the "#CHANGE" tag in areas
+%| that require updating when making a new docuent
+%|
+%| This source will generate a PDF file complete with thumbnails navigation menu and metadata,
+%| 
+
+\documentclass[12pt,article]{IEEEtran}
+
+%| This section will essentially create variables to be used in some
+%| of the documents formatting and the PDF's metadata 
+%|
+%| 
+\newcommand{\TITLE}{Assignment Title}
+\newcommand{\KEYWORDS}{keyword1, keyword2, keyword1, keyword2, keyword1, keyword2, keyword1, keyword2}
+\newcommand{\ABSTRACT}{The average person is becoming less active, not just in first world countries, 
+					but across geopolitical and socioeconomic boundaries. This sedentary lifestyle has dire consequences 
+					to health.  Studies have shown that even moderate exercise leads to improved health across all age
+					groups.  We analyze some of the benefits, and challenges, of the alternative commuter.}
+\newcommand{\AUTHOR}{Micheal Frith, David Larribas, Devin Moore, Benjamin Smith}
+\newcommand{\DUEDATE}{September 10, 2013}
+%| =================================================================================================
+%| Formatting options
+%| =================================================================================================
+
+%| Enables PDF metadata, thumbnails, and navigation
+\newcommand\MYhyperrefoptions{
+	bookmarks=true,
+	bookmarksnumbered=true,
+	bookmarksopen=true,
+	bookmarkstype={toc},
+	pdfpagemode={UseOutlines},
+	plainpages=false,
+	pdfpagelabels=true,
+	colorlinks=true,
+	linkcolor={black},
+	citecolor={black},
+	pagecolor={black},
+	urlcolor={black},
+	final=true,
+	pdftex,
+	pdftitle={\TITLE},															%#CHANGE
+	pdfsubject={\ABSTRACT},														%#CHANGE
+	pdfauthor={Micheal Frith, David Larribas, Devin Moore, Benjamin Smith},		%#CHANGE
+	pdfkeywords={\KEYWORDS}}													%#CHANGE
+
+%| Calls hyper ref package 
+\usepackage[\MYhyperrefoptions]{hyperref}
+
+%| IEEE Citation package
+\usepackage{cite}
+
+%| American Mathematical Society package for fancy maths	
+\usepackage[cmex10]{amsmath}
+\interdisplaylinepenalty=2500				% Restores IEEE line spacing after amsmath
+
+%| Better tables than LaTeX 2e
+\usepackage{array}
+
+%| Improved URL handling
+\usepackage{url}
+
+\usepackage{graphicx}
+
+\begin{document}
+
+	%| Inserts header cover sheet 
+	\include{./Title_Page}
+		 
+	%| =================================================================================================
+	%| Main Document body begins here!(the writin' parts)
+	%| =================================================================================================
+	\section{Introduction}
+
+	\section{The problem's reach}
+		\IEEEPARstart{I}{nactivity} Inactivity and its health effects were once the exclusive blight of 
+		the developed world. This problem has changed its face over the past few decades to impact an 
+		increasing percentage of the world's populace. The World Health Organization  
+		\cite{ab94}
+	\section{The problem's reach}
+
+	\section{The problem's reach}
+
+\bibliographystyle{IEEEtran}
+
+\bibliography{IEEEfull}
+
+\end{document}
