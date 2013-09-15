@@ -1,0 +1,401 @@
+%| report template for CSUS Senior Design
+%|
+%| language: LaTeX
+%| Author: Ben Smith
+%| 
+%| This source has been tagged with the "#CHANGE" tag in areas
+%| that require updating when making a new docuent
+%|
+%| This source will generate a PDF file complete with thumbnails navigation menu and metadata,
+%| 
+
+\documentclass[12pt,article]{IEEEtran}
+%| This section will essentially create variables to be used in some
+%| of the documents formatting and the PDF's metadata 
+%|
+\newcommand{\TITLE}{Design Document}
+\newcommand{\KEYWORDS}{keyword1, keyword2, keyword1, keyword2, keyword1, keyword2, keyword1}
+\newcommand{\ABSTRACT}{}
+\newcommand{\AUTHOR}{Micheal Frith, David Larribas, Devin Moore, Benjamin Smith}
+\newcommand{\DUEDATE}{September 10, 2013}
+%| =================================================================================================
+%| Formatting options
+%| =================================================================================================
+
+%| Enables PDF metadata, thumbnails, and navigation
+\newcommand\MYhyperrefoptions{
+	bookmarks=true,
+	bookmarksnumbered=true,
+	bookmarksopen=true,
+	bookmarkstype={toc},
+	pdfpagemode={UseOutlines},
+	plainpages=false,
+	pdfpagelabels=true,
+	colorlinks=true,
+	linkcolor={black},
+	citecolor={black},
+	pagecolor={black},
+	urlcolor={black},
+	final=true,
+	pdftex,
+	pdftitle={\TITLE},															
+	pdfsubject={\ABSTRACT},												
+	pdfauthor={Micheal Frith, David Larribas, Devin Moore, Benjamin Smith},				
+	pdfkeywords={\KEYWORDS}}										
+
+%| Calls hyper ref package 
+\usepackage[\MYhyperrefoptions]{hyperref}
+
+%| IEEE Citation package
+\usepackage{cite}
+
+%| American Mathematical Society package for fancy maths	
+\usepackage[cmex10]{amsmath}
+\interdisplaylinepenalty=2500				% Restores IEEE line spacing after amsmath
+
+%| Better tables than LaTeX 2e
+\usepackage{array}
+
+%| Improved URL handling
+\usepackage{url}
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+%for placing graphics
+\usepackage{graphicx}
+
+%| for static table placement
+\usepackage{float}
+\restylefloat{table}
+
+\begin{document}
+
+%| Inserts header cover sheet 
+\include{./Title_Page}
+	 
+%| =================================================================================================
+%| Beginning of main document
+%| =================================================================================================
+\section{Addressing the Societal Problem}
+	
+    \IEEEPARstart{T}{he} commute provides an opportunity for office workers to build exercise into 
+    their otherwise sedentary and busy days. The responsive control system allows a user to set an 
+	exertion amount and tailors itself to the users wants. 
+
+\section{Skill Sets}
+	\IEEEPARstart{T}{here} will be a variety of different skills required to develop this system.
+	 Many of them are currently present in our group, however some will need to be learned and or
+	 refined.
+
+	\paragraph{Mike Frith}
+		Front Flip Masta
+
+	\paragraph{David Larribas}
+		Experience with lighting and voltage conversion. Cycle commuter
+
+	\paragraph{Devin Moore}
+	Verilog and FPGA development ready. Experience with C++, C, and Java. Worked at bike 
+	shop from 2007 to 2010 and cycle commuted 2008 to 2010.
+	
+	\paragraph{Ben Smith}
+	Verilog, FPGA development, Experience with NIOS II C development. Worked at bike shops since 
+	2004, still employed at the Bicycle Emporium. Cycle commuted from 2005 to 2008 along the
+	American River Parkway.
+
+\section{Estimated Costs}
+    \begin{table}[H]
+		\renewcommand{\arraystretch}{1.3}
+			\caption{Cost Estimation}
+			
+			\label{Team Hour Summary}
+			
+			\centering
+			\begin{tabular}{p{3cm}|p{2cm}|p{3cm}}
+			\hline
+			\bfseries 	Part 				& \bfseries Cost in Dollars(\$) & \bfseries Purpose     \\
+			\hline\hline
+						DE0-Nano 		    & 100							&	Central Processor   \\
+						9 DOF IMU    		& 100			            	&   Orientation Sensors	\\	
+						Bluetooth Receiver	& 50				            &   Communication       \\	
+						Electric Motor		& 150				            &   Propulsion        	\\
+                        Motor Controller    & 100							&	PWM to Motor        \\
+						Battery     		& 400			            	&   Power           	\\	
+						BT4 Heart Rate  	& 70				            &   HR Monitering       \\	
+						Bicycle     		& FREE				            &   Framework        	\\
+                        Cell Phone          & FREE                          &   UI/Controls         \\
+                    	Miscellaneous		& 75				            &   Framework        	\\
+                        TOTAL               & 1050                          &   N/A                 \\        
+                        \hline
+                        TOTAL +35\%         & 1417                          &   Room For Error      \\        
+			            \hline
+			\end{tabular}
+		\end{table}
+
+%| =================================================================================================
+%| Punch List
+%| =================================================================================================
+\section{"Punch List"}
+	\IEEEPARstart{T}{he} "punch list" is a listing of features to be implemented in the final
+	product. These core features represent the bulk of work to be done in the project. 
+
+%| Smart Assist 
+%| =================================================================================================
+	\subsection{Smart Assist}
+    	The amount of motor assist will be controllable in real time. This combined with a microcontroller 
+        and sensors will allow motor response tailored to the users need. The motor will have four modes of operation.
+    	\begin{itemize}
+    	\item Constant âeffortâ via feedback loop (HRT or Torque) \hfill \\
+            PI feedback control system based on exertion measurement
+    
+    	\item Inclination based assistance \hfill \\
+    	   linear wattage response to change in gradient
+    
+    	\item Constant speed mode \hfill \\
+    		PID based control based on speed sensor
+    
+    	\item Constant Wattage mode \hfill \\
+    	 basic wattage setting with no digital control.
+    	\end{itemize}
+    	
+    	These modes offer the user a variety options that require the use of external sensors or not. The constant
+        wattage mode will need to be selectable and controllable via physical buttons on the device. The rest of the
+        modes will be controlled by the Android application over the bluetooth connection.
+        
+    	The motor must also turn off when the brakes are applied. There are a number of systems that detect the application
+        of the brakes. The signal line from these sensors will be run into the FPGA to turn the motor output signal on and off. 
+        
+    	The NIOS II soft processor and other HDL entities will use Altera's Quartus (13sp1) development
+        environment which is available free of charge. The actual programming of the Soft Processor will take place in a separate 
+		development environment called Nios® II Software Build Tools for Eclipse Indigo. Development of the control system in 
+		expected to require significant effort. The MicroC RTOS will be implemented on the NIOS processor to handle task scheduling on the NIOS core. 
+
+	\subsubsection{Central Processor}
+		We will be using the NIOS II soft processor implemented on an Altera Cyclone IV FPGA. During
+		the breadboard phase will use the Terasic DE0-Nano development board. This would mainly be 
+		used to communicate with peripherals through UART and Bluetooth. This would also package and 
+		store user data in a useful manner onto an SD card to be uploaded to PC or smart phone.	
+	
+	\subsubsection{Heartrate Based Control}
+		The Zephyr HxM uses the bluetooth SPP (slave) protocol to communicate. the RN-41 bluetooth module 
+		we plan to use can communicate with the heart rate strap operating  in master mode. Adding this feature 
+		will allow motor torque to be varied in near real time automatically based on the users need. An example 
+		implementation would be to use the Android application UI to specify a heart rate ceiling. As the user approaches 
+		the ceiling value the output wattage of the motor is increased to provide assistance. The downside 
+		is a 10 to 20 second delay from increase in exertion and heart rate response. The benefit is we can 
+		provide a feedback system without having to implement the mechanically complicated torque measurements. \cite{HxMAPI}
+
+	\paragraph{Referenced control systems}
+		\subparagraph{An SOPC based Intelligent Bike}	
+			The authors of this paper developed a system to monitor tire pressure and and gear selection
+			the most novel portion of their implementation is the use of cellphone RF to indicate the
+			presence of other riders. \cite{SOPCBike}
+			
+		\subparagraph{Applying Fuzzy Logic Control to an Electric Bicycle}
+			This paper details the Author's control system based on inclination. A control system
+			was built around the rotational speed of the rear wheel. This system generated a PWM
+			signal using a Programmable System On Chip.\cite{FuzzyLogicControl}
+            
+    \begin{table}[H]    	
+        \renewcommand{\arraystretch}{1.3}
+    			\caption{Estimated Time for smART Control}
+    			
+    			\label{Estimated Time}
+    			
+    			\centering
+    			\begin{tabular}{p{4cm}|p{4cm}}
+    			\hline
+    			\bfseries 	Task 			        	& \bfseries Number of Man Hours Expected        \\
+    			\hline\hline
+    						SPI for ADC 		        & 16						    	            \\
+    						I2C for IMU    	        	& 20			                                \\	
+    						NIOS II Core in Quartus	    & 2				                                \\	
+    						MicroC OS for NIOS II   	& 2				                                \\
+                            Verilog PWM Generator       & 2						                        \\
+    						Verilog Motor Control    	& 20			                                \\	
+    						Verilog Sensor Parser    	& 10				                            \\	
+    					    \hline
+    			\end{tabular}
+		\end{table}
+
+%| Motor Control
+%| =================================================================================================
+    \subsection{Motor Control and monitoring}
+        \paragraph{Motor Controller}
+        	\\todo
+        
+       
+       
+       %|Estimated Hours of Work(Not Per Person)
+       \begin{table}[H]        
+            \renewcommand{\arraystretch}{1.3}
+        		\caption{--FILL IN--}
+    			
+    			\label{--FILL IN--}
+    			
+    			\centering
+    			\begin{tabular}{p{4cm}|p{4cm}}
+    			\hline
+    			\bfseries 	Task 			        	& \bfseries Number of Man Hours Expected        \\
+    			\hline\hline
+    						--FILL IN-- 		        & 16						    	            \\
+    						--FILL IN--    	        	& 20			                                \\	
+    						--FILL IN--         	    & 2				                                \\	
+    						--FILL IN--             	& 2				                                \\
+                            --FILL IN--                 & 2						                        \\
+    						--FILL IN--             	& 20			                                \\	
+    						--FILL IN--    	            & 10				                            \\	
+    					    \hline
+    			\end{tabular}
+		\end{table}
+
+%| Power Distribution
+%| =================================================================================================
+    \subsection{Power Distribution}
+        \paragraph{USB power}
+        	This will be a hub that will supply power and operate the various external functions of the 
+        	project including the lighting and sound. Additional slots will be added providing power for 
+        	whatever USB device the user chooses.  The main purpose for the extra slots are for charging a 
+        	cell phone which the user would use to adjust settings. This hub would provide six female USB 
+        	slots; four of these would be controlled by the FPGA and the other two would be always powered.
+        	The four controlled ports would be used for the lights and sound. The hub will take power from 
+        	the battery and step down the voltage to 5V and limit the current to 700mA for each output.
+
+       %|Estimated Hours of Work(Not Per Person)
+        \begin{table}[H]        
+            \renewcommand{\arraystretch}{1.3}
+        		\caption{--FILL IN--}
+    			
+    			\label{--FILL IN--}
+    			
+    			\centering
+    			\begin{tabular}{p{4cm}|p{4cm}}
+    			\hline
+    			\bfseries 	Task 			        	& \bfseries Number of Man Hours Expected        \\
+    			\hline\hline
+    						--FILL IN-- 		        & 16						    	            \\
+    						--FILL IN--    	        	& 20			                                \\	
+    						--FILL IN--         	    & 2				                                \\	
+    						--FILL IN--             	& 2				                                \\
+                            --FILL IN--                 & 2						                        \\
+    						--FILL IN--             	& 20			                                \\	
+    						--FILL IN--    	            & 10				                            \\	
+    				        \hline	
+    			\end{tabular}
+		\end{table}
+        
+%| Safety and Lighting
+%| =================================================================================================
+    \subsection{Safety and Lighting}
+        \paragraph{Motor Safety}
+        	A number of safety systems need to be considered in the development of the control algorithm. All 
+        	operation modes must have a speed limit of 25 mph in accordance with state law. Accelerometer data 
+        	can be utilized to ensure the rider is upright and disable the drive motor in the event of a fall 
+        	for an added measure of safety.	
+    
+        	A hard kill switch is to be between the battery and motor, this relay is to be held closed by the NIOS 
+        	soft processor. The signal line is to be use a pulldown resistor to ensure the relay will open in the 
+        	event of a software failure. A physical handlebar switch should be also attached to the motor's kill 
+        	system so the user can kill the motor without having to rely on the FPGA control system.
+        
+        \paragraph{Battery Safety}
+        	The volatile lithium polymer will need to have it's operation monitored to deal with a
+        	number of conditions which can harm the battery or lead to catastrophic failure.
+
+        \paragraph{Lighting}
+        	The lighting will consist of a headlight, brake light, and front and rear blinkers. The 
+        	headlight will illuminate the area in front of the bicycle in order to increase the riders 
+        	visibility and perceptibility.  The lighting must not interfere with a driver's ability to 
+        	see and thus must not shine directly into a driver's eyes.  LEDs will be the illuminator 
+        	because of their small viewing angle which allows them to have a concentrated beam of light 
+        	without the use of reflection and their low energy consumption.  Some number of LEDs are to
+        	stay illuminated at all times the bike is in operation to increase visibility to drivers.  
+        	The rest of the LEDs in the headlight, which will be used for  illuminating the road in 
+        	front of the rider, will be activated manually or through light detection to activate 
+        	automatically in dark areas.
+        
+        	The blinkers will consist of lights mounted on the rear, and possible front, of either side of 
+        	the bicycle.  The left light flashes when the rider flips the toggle up and the right light 
+        	flashes when the toggle is down to indicate which direction the rider intends to turn.  Both 
+        	lights remain off when the toggle is in the center position.  Blinkers may be combined with the 
+        	brake lights to reduce number of  units.
+        	
+        	The brake and tail light will be a red light or set of lights will be on at all times the 
+        	vehicle is in operation at a reduced intensity.  When the rider squeezes the braking lever, 
+        	the brake lights will engage with full intensity to alert people behind that the rider is 
+        	slowing down significantly or stopping.
+        	
+        	This feature will not require any software to run and will only need simple hardware: resistors, 
+        	LEDs, wires, switches and maybe some others if different modes are to be hardwired.  
+      
+      %|Estimated Hours of Work(Not Per Person)
+        \begin{table}[H]        
+            \renewcommand{\arraystretch}{1.3}
+    			\caption{--FILL IN--}
+    			
+    			\label{--FILL IN--}
+    			
+    			\centering
+    			\begin{tabular}{p{4cm}|p{4cm}}
+    			\hline
+    			\bfseries 	Task 			        	& \bfseries Number of Man Hours Expected        \\
+    			\hline\hline
+    						--FILL IN-- 		        & 16						    	            \\
+    						--FILL IN--    	        	& 20			                                \\	
+    						--FILL IN--         	    & 2				                                \\	
+    						--FILL IN--             	& 2				                                \\
+                            --FILL IN--                 & 2						                        \\
+    						--FILL IN--             	& 20			                                \\	
+    						--FILL IN--    	            & 10				                            \\	
+    				        \hline	
+    			\end{tabular}
+		\end{table}
+    
+%| User Interface and Controls
+%| =================================================================================================
+    \subsection{User Interface and Controls}
+        \paragraph{Cell Phone Application}
+            The cellphone application will primarily act as the rider's dashboard. It will display the 
+            riderâs speed, heart rate, location, and state of the system including battery charge, rate 
+            of discharge, distance to empty estimation and power mode. The app is meant to be used from 
+            a cell phone mounted to the handlebars much like the commercially available gps systems. The
+            application will communicate with the NIOS II through Bluetooth and store required data on the 
+            SD card. 
+            
+            The user will also be able to change the power mode and alter the system settings from the
+            application. This should be the only interface to the system that the rider has to worry about,
+            besides a physical kill switch in case a reset is required.
+            
+    	    The implement this system we will use Nios® II Software Build Tools for Eclipse Indigo to program 
+            the FPGAâs Bluetooth utility and use the Eclipse IDE with built-in Android Developer Tools and Android 
+            SDK components for programming the cell phone application.
+    
+        \begin{table}[H]        
+            \renewcommand{\arraystretch}{1.3}
+    			\caption{Estimated Time for Cell Phone Integration}
+    			
+    			\label{Estimated Time}
+    			
+    			\centering
+    			\begin{tabular}{p{4cm}|p{4cm}}
+    			\hline
+    			\bfseries 	Task 			        	& \bfseries Number of Man Hours Expected        \\
+    			\hline\hline
+    						Application UI 		            & 2						    	            \\
+    						Data Processing/Presentation    & 5                                         \\
+                            Data Storage Procedure    	    & 2			                                \\	
+    						NIOS II Bluetooth	            & 2				                            \\	
+    						Cell Phone App Bluetooth   	    & 2				                            \\
+                            \hline        					
+    		    \end{tabular}
+    	\end{table}
+
+%| =================================================================================================
+%| End of Main Document
+%| =================================================================================================
+
+%Places bibliography at bottom of text
+\bibliographystyle{IEEEtran}
+\bibliography{IEEEfull}
+
+\end{document}
