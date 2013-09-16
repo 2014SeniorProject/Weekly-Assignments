@@ -81,12 +81,13 @@
 	
     \IEEEPARstart{T}{he} commute provides an opportunity for office workers to build exercise into 
     their otherwise sedentary and busy days. The responsive control system allows a user to set an 
-	exertion amount and tailors itself to the users wants. 
+	exertion amount and tailors itself to the users needs. The assistance mechanism extends the range
+	of the commuter. 
 
 \section{Skill Sets}
 	\IEEEPARstart{T}{here} will be a variety of different skills required to develop this system.
 	 Many of them are currently present in our group, however some will need to be learned and or
-	 refined.
+	 refined. 
 
 	\paragraph{Mike Frith}
 		Front Flip Masta
@@ -99,7 +100,7 @@
 	shop from 2007 to 2010 and cycle commuted 2008 to 2010.
 	
 	\paragraph{Ben Smith}
-	Verilog, FPGA development, Experience with NIOS II C development. Worked at bike shops since 
+	Experience with Verilog and FPGA development, Experience with NIOS II C development. Worked at bike shops since 
 	2004, still employed at the Bicycle Emporium. Cycle commuted from 2005 to 2008 along the
 	American River Parkway.
 
@@ -111,7 +112,7 @@
 			\label{Team Hour Summary}
 			
 			\centering
-			\begin{tabular}{p{3cm}|p{2cm}|p{3cm}}
+			\begin{tabular}{p{3cm}|p{1.4cm}|p{3.2cm}}
 			\hline
 			\bfseries 	Part 				& \bfseries Cost in Dollars(\$) & \bfseries Purpose     \\
 			\hline\hline
@@ -135,27 +136,37 @@
 %| =================================================================================================
 %| Punch List
 %| =================================================================================================
-\section{"Punch List"}
+\section{Punch List}
 	\IEEEPARstart{T}{he} "punch list" is a listing of features to be implemented in the final
 	product. These core features represent the bulk of work to be done in the project. 
+	
+	\begin{itemize}
+		\item Smart assistance control mechanism
+		\item Android application
+		\item Battery, motor monitoring and control
+		\item Safety and lighting
+		
+	\end{itemize}
 
 %| Smart Assist 
 %| =================================================================================================
-	\subsection{Smart Assist}
-    	The amount of motor assist will be controllable in real time. This combined with a microcontroller 
+	\subsection{{\bfseries Smart} Assist}
+	
+		\begin{figure*}[t]
+			\includegraphics[width=\textwidth]{SystemDiagram}
+			\caption{Control System block diagram}
+		\end{figure*}
+	
+    	The amount of motor assist will be controllable in real time. This combined with a micro controller 
         and sensors will allow motor response tailored to the users need. The motor will have four modes of operation.
     	\begin{itemize}
-    	\item Constant âeffortâ via feedback loop (HRT or Torque) \hfill \\
-            PI feedback control system based on exertion measurement
+    	\item Constant "effort" via feedback loop (HRT or Torque)
+    	
+    	\item Inclination based assistance
     
-    	\item Inclination based assistance \hfill \\
-    	   linear wattage response to change in gradient
+    	\item Constant speed mode \hfill
     
-    	\item Constant speed mode \hfill \\
-    		PID based control based on speed sensor
-    
-    	\item Constant Wattage mode \hfill \\
-    	 basic wattage setting with no digital control.
+    	\item Constant Wattage mode \hfill
     	\end{itemize}
     	
     	These modes offer the user a variety options that require the use of external sensors or not. The constant
@@ -170,13 +181,13 @@
 		development environment called Nios® II Software Build Tools for Eclipse Indigo. Development of the control system in 
 		expected to require significant effort. The MicroC RTOS will be implemented on the NIOS processor to handle task scheduling on the NIOS core. 
 
-	\subsubsection{Central Processor}
+	\subsubsection{\bfseries Central Processor}
 		We will be using the NIOS II soft processor implemented on an Altera Cyclone IV FPGA. During
 		the breadboard phase will use the Terasic DE0-Nano development board. This would mainly be 
 		used to communicate with peripherals through UART and Bluetooth. This would also package and 
 		store user data in a useful manner onto an SD card to be uploaded to PC or smart phone.	
 	
-	\subsubsection{Heartrate Based Control}
+	\subsubsection{\bfseries Heartrate Based Control}
 		The Zephyr HxM uses the bluetooth SPP (slave) protocol to communicate. the RN-41 bluetooth module 
 		we plan to use can communicate with the heart rate strap operating  in master mode. Adding this feature 
 		will allow motor torque to be varied in near real time automatically based on the users need. An example 
@@ -184,8 +195,11 @@
 		the ceiling value the output wattage of the motor is increased to provide assistance. The downside 
 		is a 10 to 20 second delay from increase in exertion and heart rate response. The benefit is we can 
 		provide a feedback system without having to implement the mechanically complicated torque measurements. \cite{HxMAPI}
-
-	\paragraph{Referenced control systems}
+		
+		\paragraph{\bfseries Advanced heart rate control systems}
+		
+	
+	\paragraph{\bfseries Referenced control systems}
 		\subparagraph{An SOPC based Intelligent Bike}	
 			The authors of this paper developed a system to monitor tire pressure and and gear selection
 			the most novel portion of their implementation is the use of cellphone RF to indicate the
@@ -203,21 +217,25 @@
     			\label{Estimated Time}
     			
     			\centering
-    			\begin{tabular}{p{4cm}|p{4cm}}
+    			\begin{tabular}{p{6cm}|p{1.6cm}}
     			\hline
-    			\bfseries 	Task 			        	& \bfseries Number of Man Hours Expected        \\
+    			\bfseries 	Task 			        	& \bfseries Hours labor expected     		   \\
     			\hline\hline
     						SPI for ADC 		        & 16						    	            \\
     						I2C for IMU    	        	& 20			                                \\	
     						NIOS II Core in Quartus	    & 2				                                \\	
     						MicroC OS for NIOS II   	& 2				                                \\
                             Verilog PWM Generator       & 2						                        \\
-    						Verilog Motor Control    	& 20			                                \\	
-    						Verilog Sensor Parser    	& 10				                            \\	
+    						Verilog Motor Control    	& 20                             \\	
+    						Verilog Sensor Parser    	& 10		\\
+							Battery Monitoring Systems	& 5       \\	
     					    \hline
     			\end{tabular}
 		\end{table}
-
+	
+	\paragraph{\bfseries Qualifications for success}
+	Smart control can be tested by 
+	
 %| Motor Control
 %| =================================================================================================
     \subsection{Motor Control and monitoring}
@@ -231,12 +249,12 @@
             \renewcommand{\arraystretch}{1.3}
         		\caption{--FILL IN--}
     			
-    			\label{--FILL IN--}
+    			\label{Estimated Time}
     			
     			\centering
-    			\begin{tabular}{p{4cm}|p{4cm}}
+    			\begin{tabular}{p{6cm}|p{1.6cm}}
     			\hline
-    			\bfseries 	Task 			        	& \bfseries Number of Man Hours Expected        \\
+    			\bfseries 	Task 			        	& \bfseries Hours labor expected     		   \\
     			\hline\hline
     						--FILL IN-- 		        & 16						    	            \\
     						--FILL IN--    	        	& 20			                                \\	
@@ -266,20 +284,16 @@
             \renewcommand{\arraystretch}{1.3}
         		\caption{--FILL IN--}
     			
-    			\label{--FILL IN--}
+    			\label{Estimated Time}
     			
     			\centering
-    			\begin{tabular}{p{4cm}|p{4cm}}
+    			\begin{tabular}{p{6cm}|p{1.6cm}}
     			\hline
-    			\bfseries 	Task 			        	& \bfseries Number of Man Hours Expected        \\
+    			\bfseries 	Task 			        	& \bfseries Hours labor expected     		   \\
     			\hline\hline
-    						--FILL IN-- 		        & 16						    	            \\
-    						--FILL IN--    	        	& 20			                                \\	
-    						--FILL IN--         	    & 2				                                \\	
-    						--FILL IN--             	& 2				                                \\
-                            --FILL IN--                 & 2						                        \\
-    						--FILL IN--             	& 20			                                \\	
-    						--FILL IN--    	            & 10				                            \\	
+    						Switching regulator 		& 20						    	            \\
+    						Charge monitoring         	& 20			                                \\	
+    						FPGA and controller power	& 10				                            \\	
     				        \hline	
     			\end{tabular}
 		\end{table}
@@ -300,7 +314,11 @@
         
         \paragraph{Battery Safety}
         	The volatile lithium polymer will need to have it's operation monitored to deal with a
-        	number of conditions which can harm the battery or lead to catastrophic failure.
+        	number of conditions which can harm the battery or lead to catastrophic failure. A robust
+			charging system will be needed to prevent the battery from harmful overcharge or undercharge
+			conditions. Short circuit protection will be needed as lithium polymer batteries are specifically
+			susceptible to damage from high current conditions. Temperature and charge control mechanisms
+			can be built into the FPGA. 
 
         \paragraph{Lighting}
         	The lighting will consist of a headlight, brake light, and front and rear blinkers. The 
@@ -331,22 +349,17 @@
       %|Estimated Hours of Work(Not Per Person)
         \begin{table}[H]        
             \renewcommand{\arraystretch}{1.3}
-    			\caption{--FILL IN--}
+    			\caption{Time required to implement battery systems}
     			
-    			\label{--FILL IN--}
+    			\label{Estimated Time}
     			
     			\centering
-    			\begin{tabular}{p{4cm}|p{4cm}}
+    			\begin{tabular}{p{6cm}|p{1.6cm}}
     			\hline
-    			\bfseries 	Task 			        	& \bfseries Number of Man Hours Expected        \\
+    			\bfseries 	Task 			        	& \bfseries Hours labor		     		   \\
     			\hline\hline
-    						--FILL IN-- 		        & 16						    	            \\
-    						--FILL IN--    	        	& 20			                                \\	
-    						--FILL IN--         	    & 2				                                \\	
-    						--FILL IN--             	& 2				                                \\
-                            --FILL IN--                 & 2						                        \\
-    						--FILL IN--             	& 20			                                \\	
-    						--FILL IN--    	            & 10				                            \\	
+    						Temperature monitoring		& 4						    	            \\
+    						Charge monitoring       	& ????				                            \\	
     				        \hline	
     			\end{tabular}
 		\end{table}
@@ -356,7 +369,7 @@
     \subsection{User Interface and Controls}
         \paragraph{Cell Phone Application}
             The cellphone application will primarily act as the rider's dashboard. It will display the 
-            riderâs speed, heart rate, location, and state of the system including battery charge, rate 
+            rider's speed, heart rate, location, and state of the system including battery charge, rate 
             of discharge, distance to empty estimation and power mode. The app is meant to be used from 
             a cell phone mounted to the handlebars much like the commercially available gps systems. The
             application will communicate with the NIOS II through Bluetooth and store required data on the 
@@ -367,7 +380,7 @@
             besides a physical kill switch in case a reset is required.
             
     	    The implement this system we will use Nios® II Software Build Tools for Eclipse Indigo to program 
-            the FPGAâs Bluetooth utility and use the Eclipse IDE with built-in Android Developer Tools and Android 
+            the FPGA's Bluetooth utility and use the Eclipse IDE with built-in Android Developer Tools and Android 
             SDK components for programming the cell phone application.
     
         \begin{table}[H]        
@@ -377,9 +390,9 @@
     			\label{Estimated Time}
     			
     			\centering
-    			\begin{tabular}{p{4cm}|p{4cm}}
+    			\begin{tabular}{p{6cm}|p{1.6cm}}
     			\hline
-    			\bfseries 	Task 			        	& \bfseries Number of Man Hours Expected        \\
+    			\bfseries 	Task 				        	& \bfseries Hours labor expected     		   \\
     			\hline\hline
     						Application UI 		            & 2						    	            \\
     						Data Processing/Presentation    & 5                                         \\
